@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <title>FULL.ONE</title>
+    <script>
+      var computeWidth = innerWidth <= 500 ? innerWidth : 500
+      document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+      addEventListener('load', function () {
+        setTimeout(function () {
+          document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+          window.unit = 100 * computeWidth / 375;
+          var e = document.createEvent('Event');
+          e.initEvent('adjustReady', true, true);
+          window.dispatchEvent(e);
+        }, 480);
+      })
+      addEventListener('orientationchange', function () {
+        setTimeout(function () {
+          document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+        }, 480)
+      });
+    </script>
+</head>
+<body>
+<noscript>
+    <strong>We're sorry but world-cup doesn't work properly without JavaScript enabled. Please enable it to
+        continue.</strong>
+</noscript>
+<div id="test" style="color: #FFFFFF;word-wrap: break-word;"></div>
+<div id="receive" style="color: #FFFFFF;"></div>
+<div id="decode" style="color: #FFFFFF;"></div>
+<div id="app"></div>
+<!-- built files will be auto injected -->
+</body>
+</html>

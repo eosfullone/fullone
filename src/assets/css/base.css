@@ -1,0 +1,76 @@
+html, body, #app {
+    width: 100%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+}
+
+/*设置滚动条宽度*/
+html::-webkit-scrollbar {
+    width: 0px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/*设置滚动条宽度*/
+body::-webkit-scrollbar {
+    width: 0px;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, fieldset, textarea, pre, img {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+body {
+    background: #2C1063;
+    font-size: 0.16rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input, textarea {
+    margin: 0;
+    padding: 0;
+    background: none;
+    outline: none;
+    border: 0px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toast {
+    width: 2.1rem;
+    position: fixed;
+    top: 0.5rem;
+    left: 0.825rem;
+}
+
+.toast .vue-notification {
+    opacity: 0.75;
+    background: #000000;
+    border-radius: 8px;
+    border: none;
+
+}
+
+.toast .vue-notification .notification-title {
+    font-family: PingFangSC-Regular;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.toast .vue-notification .notification-content {
+    font-family: PingFangSC-Regular;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}

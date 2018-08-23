@@ -1,0 +1,487 @@
+.header {
+    padding: 1rem 0.2rem 0 0.1rem;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 999;
+}
+
+.back {
+    top: 0.3rem;
+    left: 0.1rem;
+    width: 100%;
+    height: 0.35rem;
+    font-size: 0.2rem;
+    line-height: 0.3rem;
+    color: #FFFFFF;
+    position: fixed;
+
+}
+
+.back .back_btn {
+    height: 0.35rem;
+    width: 0.35rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.29);
+    border-radius: 0.3rem;
+}
+
+.back .back_btn img {
+    padding-top: 0.05rem;
+    height: 0.25rem;
+    width: 0.25rem;
+}
+
+.header .help {
+    padding-left: 0.1rem;
+}
+
+.header .header_btn {
+    width: 0.88rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    background: #FFC601;
+    border-radius: 1rem;
+    font-family: PingFangSC-Medium;
+    font-size: 0.12rem;
+    color: #2C1063;
+    letter-spacing: 0;
+    text-align: center;
+
+}
+
+
+
+.header .help .help_bg {
+    background-color: #000000;
+    opacity: 0.4;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 0.35rem;
+    z-index: 1;
+    margin-top: -0.35rem;
+}
+
+.header .help .help_icon {
+    color: #FFFFFF;
+    width: 0.35rem;
+    font-family: PingFangSC-Medium;
+    font-size: 0.24rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+.header .invite_btn {
+    width: 0.88rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    color: #D53030;
+    font-size: 0.16rem;
+    background-image: linear-gradient(-180deg, #FFEA9E 0%, #FFCB68 100%);
+    border-radius: 1rem;
+    text-align: center;
+    margin-right: 0.1rem;
+}
+
+.index {
+    width: 100%;
+    background: url("../imgs/bg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2.3rem;
+}
+
+.title_bg img {
+    margin-top: -0.32rem;
+    width: 3.75rem;
+    z-index: 0;
+}
+
+.pond {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pond .pond_icon img {
+    padding-left: 0.1rem;
+    margin-top: 0.05rem;
+    width: 0.53rem;
+    height: 0.63rem;
+}
+
+.pond .pond_sum {
+    margin-left: -0.05rem;
+    text-align: center;
+    font-family: PingFangSC-Semibold;
+    font-size: 0.36rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-shadow: 0 0 0.15rem #C0A0FF;
+}
+
+.top_line {
+    width: 2.75rem;
+    margin: 0 auto;
+}
+
+.top_line img {
+    width: 2.75rem;
+}
+
+.top_buy_btn {
+    width: 2.95rem;
+    height: 0.9rem;
+    background: url("../imgs/buy_btn.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-top: 0.08rem;
+}
+
+.waiting_btn {
+    width: 2.95rem;
+    height: 0.9rem;
+    background: url("../imgs/waiting_btn.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    margin-top: 0.08rem;
+}
+
+
+.time_out {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: PingFangSC-Regular;
+    font-size: 0.2rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.time_out_wait {
+    font-family: PingFangSC-Regular;
+    font-size: 0.2rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.time_out .time {
+    /*font-size: 0.28rem;*/
+    /*padding-left: 0.1rem;*/
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.2rem 0.2rem 0.2rem;
+}
+
+.main .buy_now {
+    text-align: center;
+    background-color: #FFFFFF;
+    padding: 0.1rem;
+    border-radius: 0.05rem;
+    margin-top: 0.2rem;
+
+}
+
+.main .my_info {
+    display: flex;
+    flex-direction: column;
+    /*background-color: #FFFFFF;*/
+    background: url("../imgs/my_info_bg.png");
+    background-size: 100% 100%;
+    width: 3.27rem;
+    height: 2.56rem;
+    padding: 0.2rem 0 0.2rem 0.2rem;
+    margin-right: 0.27rem;
+    border-radius: 0.05rem;
+    margin-top: 0.1rem;
+}
+
+.main .info_item {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.12rem;
+    padding-bottom: 0.08rem;
+    font-family: PingFangSC-Medium;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+
+}
+
+.main .info_item .pot {
+    font-size: 0.14rem;
+    line-height: 0.27rem;
+}
+
+.main .info_name {
+    display: flex;
+    align-items: flex-start;
+}
+
+.main .info_item .info_icon {
+    padding-top: 0.02rem;
+    padding-right: 0.05rem;
+}
+
+.main .info_item .info_icon img {
+    width: 0.22rem;
+    /*height: 0.2rem;*/
+}
+
+.main .info_value {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-family: PingFangSC-Medium;
+    letter-spacing: 0;
+    text-align: right;
+    margin-right: 0.3rem;
+}
+
+.main .info_value .value {
+    font-size: 0.2rem;
+}
+
+.main .info_value .about_value {
+    opacity: 0.8;
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    letter-spacing: 0;
+    text-align: right;
+}
+
+.main .withdraw_btn {
+    width: 2.32rem;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    background: url("../imgs/btn_bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-family: PingFangSC-Medium;
+    font-size: 0.18rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0.05rem auto 0 0.35rem;
+}
+
+.main .withdraw_btn div {
+    width: 2.3rem;
+    height: 0.46rem;
+    margin-left: 0.01rem;
+    margin-top: 0.01rem;
+    background: rgba(255, 62, 229, 0.13);
+    border-radius: 0.06rem;
+}
+
+.tabs {
+    width: 3.35rem;
+    height: 3.34rem;
+    background: url("../imgs/market_bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 0.36rem;
+}
+
+.tabs.change {
+    width: 3.35rem;
+    height: 3.77rem;
+    background: url("../imgs/team_info.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.tab_nav {
+    width: 100%;
+    height: 0.43rem;
+    display: flex;
+}
+
+.nav_btn {
+    width: 1.66rem;
+    text-align: center;
+    height: 0.45rem;
+    line-height: 0.45rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.nav_btn.active {
+    /*background-color: #FFFFFF;*/
+    font-family: PingFangSC-Medium;
+    width: 1.69rem;
+
+}
+
+.market_info {
+    padding: 0.2rem;
+    border-top: none;
+}
+
+.main .market_info .info_item {
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0.2rem;
+}
+
+.main .market_info .info_value {
+    text-align: left;
+}
+
+.main .market_info .about_value {
+    text-align: left;
+}
+
+.market_time_out .time_out_tip {
+    font-family: PingFangSC-Regular;
+    font-size: 0.16rem;
+    color: #323232;
+    letter-spacing: 0;
+}
+
+.market_time_out .time {
+    font-family: PingFangSC-Medium;
+    font-size: 0.4rem;
+    color: #323232;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.market_time_out_line {
+    background: #E8E8E8;
+    height: 0.01rem;
+    border: none;
+    margin-top: 0.06rem;
+}
+
+.team_info {
+    /*background-color: #FFFFFF;*/
+    padding: 0.24rem 0.2rem;
+    border-bottom-left-radius: 0.05rem;
+    border-bottom-right-radius: 0.05rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.team_info .team_item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.14rem;
+}
+
+.team_info .team_item .item_left {
+    display: flex;
+    align-items: center;
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+
+.team_info .team_item .team_logo img {
+    width: 0.48rem;
+    height: 0.48rem;
+    margin-right: 0.1rem;
+}
+
+.team_info .team_item .team_value {
+    font-family: PingFangSC-Medium;
+    font-size: 0.2rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: right;
+}
+
+.team_info .team_help {
+    display: flex;
+    justify-content: center;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    align-items: center;
+    position: relative;
+    margin-top: -0.03rem;
+
+}
+
+.team_info .team_help_icon {
+    margin-left: 0.1rem;
+    /*border: solid 0.01rem;*/
+    width: 0.15rem;
+    height: 0.15rem;
+    line-height: 0.15rem;
+    border-radius: 0.2rem;
+    text-align: center;
+}
+
+.help_icon {
+    width: 0.15rem;
+    height: 0.15rem;
+    margin-left: 0.1rem;
+    margin-top: 0.05rem;
+}
+
+.noinstall_title {
+    font-family: PingFangSC-Medium;
+    font-size: 0.18rem;
+    color: #323232;
+    letter-spacing: 0;
+    text-align: center;
+    padding-top: 0.3rem;
+    padding-bottom: 0.2rem;
+}
+
+.install_btn {
+    border-radius: 0.06rem;
+    margin: 0 auto;
+    background: #661885;
+    width: 1.2rem;
+    height: 0.4rem;
+    line-height: 0.4rem;
+    text-align: center;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    margin-bottom: 0.2rem;
+}
+
+.broadcast {
+    width: 3.35rem;
+    height: 0.4rem;
+    /*line-height: 0.4rem;*/
+    background: rgba(0, 0, 0, 0.29);
+    border-radius: 0.06rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.12rem;
+    color: #0BFEE7;
+    letter-spacing: 0;
+    margin: 0.3rem auto 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.broadcast .broadcast_icon img {
+    width: 0.15rem;
+    height: 0.12rem;
+    margin-left: 0.12rem;
+    margin-right: 0.1rem;
+    margin-top: 0.08rem;
+}
