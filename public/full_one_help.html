@@ -1,0 +1,261 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <script>
+        console.log(innerWidth)
+      var computeWidth = innerWidth <= 500 ? innerWidth : 375
+      console.log(computeWidth)
+      document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+      addEventListener('load', function () {
+        setTimeout(function () {
+          document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+          window.unit = 100 * computeWidth / 375;
+          var e = document.createEvent('Event');
+          e.initEvent('adjustReady', true, true);
+          window.dispatchEvent(e);
+        }, 480);
+      })
+      addEventListener('orientationchange', function () {
+        setTimeout(function () {
+          document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
+        }, 480)
+      });
+    </script>
+    <style>
+        body {
+            font-size: 0.14rem;
+            padding: 0.2rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            color: #24292e;
+        }
+
+        h1 {
+            font-size: 0.3rem;
+            font-weight: 600;
+            border-bottom: 0.01rem solid #eaecef;
+            margin-bottom: 0.16rem;
+            padding-bottom: 0.1rem;
+
+        }
+
+        h2 {
+            font-size: 0.24rem;
+            font-weight: 600;
+            border-bottom: 0.01rem solid #eaecef;
+            margin-bottom: 0.16rem;
+            padding-bottom: 0.1rem;
+
+        }
+
+        table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        table th {
+            font-weight: 600;
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+
+        table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <br>
+    <h1 data-source-line="1" id="fullone">
+        <a class="markdownIt-Anchor" href="#fullone"></a>
+        FULL.ONE Game Overview
+    </h1>
+    <ul data-source-line="2">
+        <li>This is a game based on EOS Smart Contract. At the end of each round, the last person to purchase Key will win majority of the prize money in the prize pool!
+        </li>
+        <li>In a round of game, players can buy one or more Key. Purchasing Key will reset the timer and put the player in the current leading position.
+        </li>
+        <li>Every purchase of Key will increase Key’s prices slightly. As the game progresses and new players continue to purchase Key, the previous players will continue to earn dividend rewards from the game.
+        </li>
+        <li>When the timer reaches 0, the last person to purchase Key becomes the biggest winner!</li>
+        <li>Players can obtain extra rewards by purchasing a referral link and inviting others to play the game.</li>
+    </ul>
+    <h2 data-source-line="15" id="GAMERULE"><a class="markdownIt-Anchor" href="#GAMERULE"></a>Rules of the Game</h2>
+    <ul data-source-line="17">
+        <li>Key is the core of the game, it will change the gameplay of a round of game and affect when and how a round of game ends. </li>
+        <li>There is a timer in the game which will count down to 0. Each Key purchased adds 30 seconds, rounded down. For example, if you purchase 1 Key, the timer will increase by 30 seconds, 60 seconds if 2 Key were purchased (and so on), while 2.5 Key will add 60 seconds.
+        </li>
+        <li>Whenever there’s a new buyer, those who are already holding Key will instantly receive EOS dividends which could be withdrawn, until the end of the round of game.</li>
+        <li>In each round of game, you could stand to receive 3 substantial EOS rewards：
+            <ul>
+                <li>o   Game dividends: During the game, every Key you hold ensures that you will receive a portion of the dividend reward.
+                </li>
+                <li>Prize Pool sharing: At the end of each round of game, you can also participate in the sharing of the final huge prize pool. </li>
+                <li>Referral reward: If your friend enters your referral code when purchasing Key, you will receive 10% of the purchase amount as referral reward. </li>
+            </ul>
+        </li>
+        <li>When the timer reaches 0, the last player to purchase more than 1 Key will receive half of the EOS in the prize pool and end the current round of game (When the game ends, the leftover EOS in the prize pool will be shared by the participants of the current round of game and developers).
+        </li>
+        <li>Each round of game could last from a few days to a few months, or even a few years, the 24 hours countdown ensures the game will not end very fast in this mode.</li>
+        <li>Before the total amount received by Smart Contract exceeds 5000 EOS, each EOS account is only allowed to purchase Key with total worth of not more than 50 EOS.</li>
+        <li>Key’s price increase is slow and gradual, rising slowly with each purchase.
+        </li>
+        <li>Every purchase of Key will add 30 seconds to the current round of game’s timer, capped at 24 hours.</li>
+        <li>Every Key will increase the timer’s time, rounded down, meaning 2.5 Key is equivalent to 60 seconds. </li>
+        <li>Before the start of each round, there will be a resting period, and Key can’t be bought during this time. If you transfer EOS to the contract during this period, your EOS will not be utilised and will be directly transferred to your income portion and can be withdrawn at any time.
+        </li>
+    </ul>
+    <h2 data-source-line="32" id="TEAM"><a class="markdownIt-Anchor" href="#TEAM"></a>The Teams</h2>
+    <p data-source-line="34">In the FULL.ONE game, there are 4 teams for users to choose from. With every purchase of Key, you could choose a new team. When you select a team, you are also selecting 2 distribution rules:</p>
+    <ol data-source-line="36">
+        <li>Game dividends rule – allocating the EOS used to buy Key;
+        </li>
+        <li>Prize Pool sharing rule – If you are the winner of the current round, the team your last Key belongs to will decide the rules of how the prize pool is distributed.
+        </li>
+    </ol>
+    <h3 data-source-line="39" >
+        <a class="markdownIt-Anchor" ></a>Brief explanation of each team：
+    </h3>
+    <ul data-source-line="40">
+        <li>Azure Dragon
+        </li>
+    </ul>
+    <p data-source-line="42">
+        Most of the EOS you used to purchase Key will be distributed among players holding Key and a small portion will be put in the prize pool. During the Prize Pool sharing at the end of the round, most of the prize pool will be distributed to players holding Key and a small portion will be left for the next round.
+    </p>
+    <ul data-source-line="45">
+        <li>White Tiger
+        </li>
+    </ul>
+    <p data-source-line="47">
+        Almost half of the amount you used to purchase Key will be distributed to players holding Key and the other portion will enter the final prize pool. During the Prize Pool sharing at the end of the round, most of the prize pool will be distributed to players holding Key and a small portion will be left for the next round.
+    </p>
+    <ul data-source-line="50">
+        <li>Suzaku</li>
+    </ul>
+    <p data-source-line="52">
+        More than half of the amount you used to purchase Key will enter the final prize pool and a small portion will be distributed to players holding Key. During the Prize Pool sharing at the end of the round, a small portion of the prize pool will be distributed to players holding Key and most of it will be left for the next round.
+    </p>
+    <ul data-source-line="55">
+        <li>Genbu</li>
+    </ul>
+    <p data-source-line="57">
+        Most of the amount you used to purchase Key will enter the final prize pool and a very small portion will be distributed to players holding Key. During the Prize Pool sharing at the end of the round, most of the prize pool will be passed onto the next round and a very small portion will be distributed to players holding Key.
+    </p>
+    <h3 data-source-line="60" ><a class="markdownIt-Anchor" ></a>Charts showing detailed description:
+    </h3>
+    <ol data-source-line="61">
+        <li>Game Dividend rule</li>
+    </ol>
+    <p data-source-line="63">Each Key purchased by players will be distributed based on the team the player chose.</p>
+    <table data-source-line="65">
+        <thead>
+        <tr>
+            <th>Team</th>
+            <th>Prize Pool</th>
+            <th>Key holders</th>
+            <th>Referral Reward</th>
+            <th>Developers Fund</th>
+            <th>System Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Azure Dragon</td>
+            <td>20%</td>
+            <td>66%</td>
+            <td>10%</td>
+            <td>3%</td>
+            <td>1%</td>
+        </tr>
+        <tr>
+            <td>White Tiger</td>
+            <td>40%</td>
+            <td>46%</td>
+            <td>10%</td>
+            <td>3%</td>
+            <td>1%</td>
+        </tr>
+        <tr>
+            <td>Suzaku</td>
+            <td>60%</td>
+            <td>26%</td>
+            <td>10%</td>
+            <td>3%</td>
+            <td>1%</td>
+        </tr>
+        <tr>
+            <td>Genbu</td>
+            <td>80%</td>
+            <td>6%</td>
+            <td>10%</td>
+            <td>3%</td>
+            <td>1%</td>
+        </tr>
+        </tbody>
+    </table>
+    <ol data-source-line="72" start="2">
+        <li>Prize Pool Sharing Rule</li>
+    </ol>
+    <p data-source-line="74">When the final winner emerges, all the players will share the final prize pool based on the rules of the team the last Key belongs to：</p>
+    <table data-source-line="76">
+        <thead>
+        <tr>
+            <th>Team</th>
+            <th>Final Winner</th>
+            <th>Key holder</th>
+            <th>Next round Prize Pool</th>
+            <th>Developers Reward</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Azure Dragon</td>
+            <td>48%</td>
+            <td>40%</td>
+            <td>10%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>White Tiger</td>
+            <td>48%</td>
+            <td>30%</td>
+            <td>20%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>Suzaku</td>
+            <td>48%</td>
+            <td>20%</td>
+            <td>30%</td>
+            <td>2%</td>
+        </tr>
+        <tr>
+            <td>Genbu</td>
+            <td>48%</td>
+            <td>10%</td>
+            <td>40%</td>
+            <td>2%</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2 data-source-line="83" ><a class="markdownIt-Anchor"></a>Referral Rewards</h2>
+    <ul data-source-line="85">
+        <li>On the Referral page, you can copy your referral code and share with your friends.</li>
+        <li>We have also prepared an exclusive referral poster for you which includes your referral code. </li>
+        <li>You will receive 10% of your friend’s Key purchase amount as referral reward if he enters your referral code during the purchase.</li>
+        <li>In FULL.ONE, you will continue to receive referral benefits as your friend continue to buy Key over time, until he switches to purchase using someone else’s link.
+        </li>
+        <li>If a player did not enter referral code when purchasing Key, this amount will be distributed among players holding Key as game bonus.</li>
+    </ul>
+</div>
+</body>
+</html>
