@@ -4,7 +4,7 @@
             <div class="modal-wrapper" @click="$emit('close')">
                 <div class="modal-container"  @click.stop>
                     <div v-if="closeBtn" class="close" @click="$emit('close')">
-                        <img src="../assets/imgs/close.png">
+                        <img src="../../public/static/imgs/close1.png">
                     </div>
                     <div class="modal-header fade">
                         <slot name="header">

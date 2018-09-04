@@ -13,10 +13,14 @@ export default {
     WITHDRAW_CONFIRM: 'Confirm',
     WECHAT: 'WeChat friends',
     WECHAT_LINE: 'Friend’s moment',
-    SHARE:'share'
+    SHARE:'share',
+    BUY_KEY:'BUY KEY',
+    NOT_INSTALL:'download',
+    MAIN_WITHDRAW:'Withdraw'
   },
   TIP: {
-    OVER_TIME: 'End of this round',
+    OVER_TIME: 'End of round',
+    OVER_TIME_TIP:'',
     OVER: 'Ended',
     NEXT_ROUND: 'Waiting for the next round',
     BEFOR: '',
@@ -44,6 +48,8 @@ export default {
     WITHDRAW_ACCOUNT: 'EOS account',
     INVITE_TIP: 'Your friend fills in your invitation code and You will get a 10% ',
     MY_INVITE_CODE: 'My invitation code',
+    NOINSTALL_TITLE:'',
+    MODEL_TIP:'-hour mode'
   },
   TEAMS: {
     TEAM1: 'Azure Dragon',
@@ -57,8 +63,8 @@ export default {
     BUY_EARLIER: 'The earlier you buy the Key, the higher the return',
     LOGIN_FIRST: 'Please login first',
     LEAST_BUY: 'Buy at least one KEY',
-    LIMIT_TIP: 'To be fair, each EOS account can only buy up to 50 keys per EOS at the beginning of each round',
-    BUY_SUCCESS: 'The purchase application was submitted successfully',
+    LIMIT_TIP: 'Each EOS account is only allowed to purchase Key with total worth of not more than 100 EOS.',
+    BUY_SUCCESS: 'Purchase request has been sent, waiting for the node package, please check the packaging later',
     BUY_FAIL: 'Purchase failed',
     INVITE_CODE_ERR: 'The format of the invitation code is wrong, please check again',
     WITHDRAW_SUCCESS: 'The withdrawal application was submitted successfully',

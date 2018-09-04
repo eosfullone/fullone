@@ -5,20 +5,38 @@ import { getQueryStr } from './utils/utils'
 import { EosService, marketService } from './service'
 import config from './config'
 let EOSCONF = config.EOSCONF
+let auth = getQueryStr('auth')
 let lang = getQueryStr('lang') || 'en'
 let inapp = getQueryStr('inapp')
+var u = navigator.userAgent;
+var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
 Vue.use(Vuex)
 let eosService = null
+let currency = 'USDT'
+let rate = 1
+if (lang.indexOf('zh') >= 0) {
+  lang = 'zh'
+}else if (lang.indexOf('en') >= 0) {
+  lang = 'en'
+}else{
+  lang = 'zh'
+}
 
+if (lang != 'en') {
+  currency = 'CNY'
+  rate = 6.89
+}
 export default new Vuex.Store({
   state: {
     logined: true,
     inApp: !!inapp,
     invite_code: '',
+    auth: auth,
     version: null,
     lang: lang,
     accountName: '',
+    contractName: '',
     myEarn: 0,
     accountInfo: {
       myEarn: 0,
@@ -26,8 +44,11 @@ export default new Vuex.Store({
     roundInfo: {},
     preRoundInfo: {},
     eosPrice: 0,
-    rate: 1,
-    currency: 'USDT'
+    rate: rate,
+    currency: currency,
+    isIOS: isIOS,
+    profits:[],
+    styleModel:1
 
   },
   mutations: {
@@ -82,24 +103,42 @@ export default new Vuex.Store({
     },
     setAccountName(state, accountName){
       state.accountName = accountName
+    },
+    setContractName(state,contractName){
+      state.contractName = contractName
+    },
+    setLang(state, lang){
+      let currency = 'USDT'
+      let rate = 1
+      if (lang == 'zh') {
+        currency = 'USDT'
+        rate = 1
+      }
+      state.currency = currency
+      state.rate = rate
+      state.lang = lang
+    },
+    setStyleModel(state,model){
+      state.styleModel = model
     }
   },
   actions: {
-    getAccount({commit, state}){
+    getAppInfo({commit, state}){
       return new Promise((resolve, reject) => {
-
-        //todo  get account and init EosService
-        // let account =  your get account logic
-        // commit('setAccountName', account)
-        //eosService = new EosService(account)
         eosService = new EosService()
-        resolve()
+        if (!state.inApp) {
+          resolve()
+        } else {
+          //todo get account info
+
+          resolve()
+        }
       })
     },
     async getAccountInfo({commit, state}){
       try {
         if (state.accountName) {
-          let data = await eosService.getAccountInfo(state.accountName)
+          let data = await eosService.getAccountInfo(state.contractName, state.accountName)
           if (data && data.rows && data.rows[0]) {
             let account = data.rows[0]
             if (account.player == state.accountName) {
@@ -115,15 +154,12 @@ export default new Vuex.Store({
         throw err
       }
     },
-    async getCurrnRoundInfo({commit}){
+    async getCurrnRoundInfo({commit,state}){
       try {
-        let gobal = await eosService.getGobalInfo()
-        if (gobal) {
-          let data = await eosService.getRoundInfo(gobal.current_round)
-          if (data) {
-            commit('setRoundInfo', data)
-            return data
-          }
+        let data = await eosService.getCurrnRoundInfo(state.contractName)
+        if (data) {
+          commit('setRoundInfo', data)
+          return data
         } else {
           return null
         }
@@ -131,13 +167,12 @@ export default new Vuex.Store({
         throw err
       }
     },
-    async getPreRoundInfo({commit}){
+    async getPreRoundInfo({commit,state}){
       try {
-        let gobal = await eosService.getGobalInfo()
+        let gobal = await eosService.getGobalInfo(state.contractName)
         if (gobal) {
-
           if (gobal.current_round > 1) {
-            let data = await eosService.getRoundInfo(gobal.current_round - 1)
+            let data = await eosService.getRoundInfo(state.contractName, gobal.current_round - 1)
             if (data) {
               commit('setPreRoundInfo', data)
               return data
@@ -166,33 +201,10 @@ export default new Vuex.Store({
         throw err
       }
     },
-    async getActions({commit}){
-      try {
-        let data = await eosService.getActions(EOSCONF.scope)
-        return data
-      } catch (err) {
-        throw err
-      }
-    },
-    async getMyActions({commit, state}){
-      try {
-        if (state.accountName) {
-          let data = await eosService.getActions(state.accountName)
-          if (data && data.length) {
-
-          }
-          return data
-        } else {
-          return []
-        }
-      } catch (err) {
-        throw err
-      }
-    },
     async wallterBuy({commit, state}, param){
       try {
         let {team_id, tokens, aff} = param
-        let data = await eosService.wallterBuy(state.accountName, tokens, team_id, aff)
+        let data = await eosService.wallterBuy(state.contractName, state.accountName, tokens, team_id, aff)
         return data
       } catch (err) {
         throw err
@@ -201,7 +213,7 @@ export default new Vuex.Store({
     async buyxtoken({commit, state}, param){
       try {
         let {team_id, tokens, aff} = param
-        let data = await eosService.buyxtoken(state.accountName, team_id, tokens, aff)
+        let data = await eosService.buyxtoken(state.contractName, state.accountName, team_id, tokens, aff)
         return data
       } catch (err) {
         throw err
@@ -209,11 +221,20 @@ export default new Vuex.Store({
     },
     async withdraw({commit, state}){
       try {
-        let data = await eosService.withdraw(state.accountName)
+        let data = await eosService.withdraw(state.contractName, state.accountName)
         return data
       } catch (err) {
         throw err
       }
+    },
+    setContractName({commit},{contract}){
+      commit('setContractName', contract)
+    },
+    setLang({commit},{lang}){
+      commit('setLang',lang)
+    },
+    setStyleModel({commit},{index}){
+      commit('setStyleModel',index)
     }
   }
 })

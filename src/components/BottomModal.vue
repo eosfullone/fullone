@@ -6,10 +6,10 @@
                     <div class="container-bg">
                         <div class="top-btns">
                             <div v-if="backBtn" class="modal-back" @click="$emit('back')">
-                                <img src="../assets/imgs/back.png">
+                                <img src="../../public/static/imgs/back.png">
                             </div>
                             <div v-if="closeBtn" class="close" @click="$emit('close')">
-                                <img src="../assets/imgs/close.png">
+                                <img src="../../public/static/imgs/close.png">
                             </div>
                         </div>
                         <div class="modal-main">
@@ -106,7 +106,7 @@
 
     .modal-container {
         width: 100%;
-        background: #250061;
+        background: #2c34ac;
         border-top: 0.02rem solid #00FAFF;
         border-radius: 0.12rem 0.12rem 0 0;
         padding: 0 0.02rem;
@@ -116,7 +116,13 @@
         bottom: 0;
         max-height: 5.12rem;
         animation: slide-in 0.5s;
+
     }
+    .gameModel1 .modal-container{
+        background: rgba(0,0,0,0.6);
+        border-top: 0.02rem solid #b659f0;
+    }
+
 
     @keyframes slide-in {
         0% {
@@ -129,25 +135,31 @@
     }
 
     .modal-container .container-bg {
-        background: url("../assets/imgs/modal_bg.png");
+        background: url("../../public/static/imgs/modal_bg.png");
         background-size: 100%;
         background-repeat: no-repeat;
     }
-
+    .gameModel1 .modal-container .container-bg{
+        background: none;
+    }
     .modal-main {
         max-height: 4.62rem;
         width: 100%;
         overflow-x: hidden;
         overflow-y: scroll;
     }
-
+    .modal-header{
+        max-width: 3.75rem;
+        margin: 0 auto;
+    }
     .modal-header h3 {
         margin-top: 0;
         color: #42b983;
     }
 
-    .modal-body {
-
+    .modal_body{
+        max-width: 3.75rem;
+        margin: 0 auto;
     }
 
     .modal-default-button {
@@ -162,11 +174,15 @@
         opacity: 0;
     }
 
-    /*.modal-enter .modal-container,*/
-    /*.modal-leave-active .modal-container {*/
-    /*-webkit-transform: scale(1.1);*/
-    /*transform: scale(1.1);*/
-    /*}*/
+    .main_with_draw .modal-container {
+        background: none;
+        border-top: 0.02rem solid #4249e0;
+
+    }
+    .main_with_draw .modal-container .container-bg {
+        background:rgba(0,0,0,0.7);
+        background-repeat: no-repeat;
+    }
 
 
 </style>

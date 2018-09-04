@@ -8,7 +8,7 @@
                 </div>
                 <div class="buy_title">{{$t('TIP.CHOOSE_TEAM')}}:
                     <div class="team_help_icon" @click="toTeamHelp">
-                        <img class="buy_help_icon" src="../assets/imgs/help.png">
+                        <img class="buy_help_icon" src="../../public/static/imgs/help.png">
                     </div>
                 </div>
             </div>
@@ -16,27 +16,27 @@
                 <div class="teams">
                     <div class="team" :class="{active:selectIndex==0}" @click="selectTeam(0)">
                         <div class="team_logo">
-                            <img src="../assets/imgs/ql_logo.png">
+                            <img src="../../public/static/imgs/ql_logo.png">
                         </div>
-                        <div class="team_name" > {{$t('TEAMS.TEAM1')}}</div>
+                        <div class="team_name" :class="{en:lang=='en'}"> {{$t('TEAMS.TEAM1')}}</div>
                     </div>
                     <div class="team" :class="{active:selectIndex==1}" @click="selectTeam(1)">
-                        <div class="team_logo" >
-                            <img src="../assets/imgs/bh_logo.png">
+                        <div class="team_logo" :class="{en:lang=='en'}">
+                            <img src="../../public/static/imgs/bh_logo.png">
                         </div>
-                        <div class="team_name" > {{$t('TEAMS.TEAM2')}}</div>
+                        <div class="team_name" :class="{en:lang=='en'}"> {{$t('TEAMS.TEAM2')}}</div>
                     </div>
                     <div class="team" :class="{active:selectIndex==2}" @click="selectTeam(2)">
                         <div class="team_logo">
-                            <img src="../assets/imgs/zq_logo.png">
+                            <img src="../../public/static/imgs/zq_logo.png">
                         </div>
-                        <div class="team_name" > {{$t('TEAMS.TEAM3')}}</div>
+                        <div class="team_name" :class="{en:lang=='en'}"> {{$t('TEAMS.TEAM3')}}</div>
                     </div>
                     <div class="team" :class="{active:selectIndex==3}" @click="selectTeam(3)">
                         <div class="team_logo">
-                            <img src="../assets/imgs/xw_logo.png">
+                            <img src="../../public/static/imgs/xw_logo.png">
                         </div>
-                        <div class="team_name" > {{$t('TEAMS.TEAM4')}}</div>
+                        <div class="team_name" :class="{en:lang=='en'}"> {{$t('TEAMS.TEAM4')}}</div>
                     </div>
                 </div>
                 <div class="buy_area">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="addBtns">
-                        <div @click="addKey(1)">+ 1</div>
+                        <div @click="addKey(2)">+ 2</div>
                         <div @click="addKey(3)">+ 3</div>
                         <div @click="addKey(10)">+ 10</div>
                         <div @click="addKey(100)">+ 100</div>
@@ -91,7 +91,7 @@
         <BottomModal @close="close" class="step2" closeBtn="true" v-if="showWalletBuy">
             <div slot="header" class="title">
                 <div>{{$t('TIP.PAY')}}</div>
-                <div>{{sumPrice}}OS</div>
+                <div>1201EOS</div>
             </div>
             <div slot="body">
 
@@ -132,7 +132,7 @@
           this.buyNum = ''
         } else if (newNum == '') {
           return
-        }else if (newNum <0) {
+        } else if (newNum < 0) {
           this.buyNum = ''
         } else {
           this.buyNum = parseInt(newNum)
@@ -144,13 +144,13 @@
         'roundInfo': 'roundInfo',
         'accountName': 'accountName',
         'accountInfo': 'accountInfo',
-        'lang':'lang'
+        'lang': 'lang'
       }),
       keyPrice(){
         let price = 0
         let roundKes = this.roundInfo.keys || 0
         roundKes++
-        price = (1.6 * (roundKes / Math.pow(10, 8)) + 666666) / Math.pow(10, 8)
+        price = (1.6 * (roundKes / Math.pow(10, 7)) + 666666) * 4 / Math.pow(10, 8) + 0.001
         price = price.toFixed(4)
         if (isNaN(price)) {
           price = 0
@@ -176,7 +176,7 @@
         this.$notify({
           group: 'toast',
           text: text,
-          duration: 3000
+          duration: 5000
         })
         document.getElementById("toast").setAttribute("style", "")
       },
@@ -278,20 +278,18 @@
           this.toast(this.$t('TOAST.INVITE_CODE_ERR'))
         }
       }, checkLimit(){
-        let limitKeys = 50000
-        if (this.roundInfo && this.roundInfo.keys && this.accountInfo && this.roundInfo.round_id==this.accountInfo.round_id) {
-          let allKeys = this.dealKeyVal(this.roundInfo.keys)
-          let mytokens = 0
-          if (this.accountInfo.tokens) {
-            mytokens = Math.round(this.accountInfo.tokens / Math.pow(10, 8))
-            console.log(mytokens)
-            if (isNaN(mytokens)) {
-            }
-          }
-          console.log(parseFloat(mytokens) + parseFloat(this.sumPrice))
-          if (allKeys < limitKeys) {
-            if (mytokens >= 50 || (parseFloat(mytokens) + parseFloat(this.sumPrice)) >= 50)
+        let limitTokens = 2000
+        if (this.roundInfo) {
+          let allTokens = Math.round(this.roundInfo.tokens / Math.pow(10, 8))
+          if (allTokens < limitTokens) {
+            if (this.accountInfo && this.roundInfo.round_id == this.accountInfo.round_id && this.accountInfo.tokens) {
+              let mytokens = Math.round(this.accountInfo.tokens / Math.pow(10, 8))
+              if (mytokens >= 100 || (parseFloat(mytokens) + parseFloat(this.sumPrice)) >= 100) {
+                return false
+              }
+            } else if (parseFloat(this.sumPrice) >= 100) {
               return false
+            }
           }
         }
         return true
@@ -299,6 +297,9 @@
       dealKeyVal(val){
         return dealVal(val)
       }, toTeamHelp(){
+        if (this.lang == 'en') {
+          window.location.href = './full_one_help_en.html#TEAM'
+        }
         window.location.href = './full_one_help.html#TEAM'
       }
     }
@@ -336,6 +337,12 @@
         letter-spacing: 0;
     }
 
+    .gameModel1 .inviter .inviter_code input {
+        border: #b659f0 solid 0.02rem;
+        background: rgba(255, 255, 255, 0.13);
+        color: #FFFFFF;
+    }
+
     .team_help_icon {
         margin-left: 0.1rem;
         /*border: solid 0.01rem;*/
@@ -371,6 +378,8 @@
 
     .modal_body {
         padding: 0 0.1rem;
+        max-width: 3.75rem;
+        margin: 0 auto;
     }
 
     .teams {
@@ -403,11 +412,15 @@
 
     .teams .team .team_name {
         font-family: PingFangSC-Regular;
-        font-size: 0.12rem;
+        font-size: 0.16rem;
         color: #FFFFFF;
         letter-spacing: 0;
         text-align: center;
         padding-top: 0.04rem;
+    }
+
+    .teams .team .team_name.en {
+        font-size: 0.12rem;
     }
 
     .buy_area {
@@ -435,6 +448,12 @@
 
     }
 
+    .gameModel1 .buy_area .count {
+        border: #b659f0 solid 0.02rem;
+        background: rgba(255, 255, 255, 0.13);
+        color: #FFFFFF;
+    }
+
     .buy_area .count .buy_num {
         text-align: right;
     }
@@ -448,6 +467,10 @@
         width: 1.18rem;
         margin-right: 0.1rem;
 
+    }
+
+    .gameModel1 .buy_area .count .buy_num input {
+        color: #FFFFFF;
     }
 
     .buy_area .addBtns {
@@ -497,10 +520,21 @@
         height: 0.44rem;
         line-height: 0.44rem;
         text-align: center;
-        background: url("../assets/imgs/btn_bg.png");
+        /*border: 1px solid #E03A3A;*/
+        background: url("../../public/static/imgs/btn_bg.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
+        /*border-radius: 0.06rem;*/
         color: #00FFF6;
+    }
+
+    .gameModel1 .buy_btns .earning_buy {
+        background: none;
+        border: #b659f0 solid 0.01rem;
+        height: 0.42rem;
+        line-height: 0.42rem;
+        border-radius: 0.08rem;
+        color: #FFFFFF;
     }
 
     .buy_btns .wallet_buy {
@@ -508,11 +542,19 @@
         height: 0.44rem;
         line-height: 0.44rem;
         text-align: center;
+        /*background: url("../../public/static/imgs/wallet_pay_bg.png");*/
+        /*background-size: 100% 100%;*/
+        /*background-repeat: no-repeat;*/
         background-image: linear-gradient(-90deg, #32F8FF 3%, #FC00FF 99%);
         border-radius: 0.06rem;
-        color: #250061;
+        color: #2C34AC;
         letter-spacing: 0;
         text-align: center;
+    }
+
+    .gameModel1 .buy_btns .wallet_buy {
+        background: #b659f0;
+        color: #000000;
     }
 
     .buy_tip {
@@ -565,6 +607,9 @@
         width: 3.35rem;
         height: 0.5rem;
         line-height: 0.5rem;
+        /*background: url("../../public/static/imgs/wallet_pay_bg.png");*/
+        /*background-size: 100% 100%;*/
+        /*background-repeat: no-repeat;*/
         background-image: linear-gradient(-90deg, #32F8FF 3%, #FC00FF 99%);
         border-radius: 0.06rem;
         font-family: PingFangSC-Medium;
@@ -574,6 +619,11 @@
         text-align: center;
         margin-left: 0.2rem;
         margin-bottom: 0.6rem;
+    }
+
+    .gameModel1 .confirm_btn {
+        background: #b659f0;
+        color: #FFFFFF;
     }
 
     .confirm_btn.no {

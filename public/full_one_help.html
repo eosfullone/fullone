@@ -9,9 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta http-equiv="x-rim-auto-match" content="none">
     <script>
-        console.log(innerWidth)
       var computeWidth = innerWidth <= 500 ? innerWidth : 375
-      console.log(computeWidth)
       document.documentElement.style.fontSize = 100 * computeWidth / 375 + 'px'
       addEventListener('load', function () {
         setTimeout(function () {
@@ -35,6 +33,34 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             color: #24292e;
         }
+        .back {
+            top: 0.7rem;
+            left: 0.1rem;
+            width: 100%;
+            height: 0.35rem;
+            font-size: 0.2rem;
+            line-height: 0.3rem;
+            color: #FFFFFF;
+            position: fixed;
+
+        }
+        .back.ios{
+            top: 0.6rem;
+        }
+
+        .back .back_btn {
+            height: 0.35rem;
+            width: 0.35rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.29);
+            border-radius: 0.3rem;
+        }
+
+        .back .back_btn img {
+            padding-top: 0.07rem;
+            height: 0.2rem;
+            width: 0.15rem;
+        }
 
         h1 {
             font-size: 0.3rem;
@@ -53,7 +79,10 @@
             padding-bottom: 0.1rem;
 
         }
-
+        .tab_div{
+            width:100%;
+            overflow-x: scroll;
+        }
         table {
             width: 100%;
             border-spacing: 0;
@@ -72,7 +101,14 @@
     </style>
 </head>
 <body>
+<div class="back">
+    <div class="back_btn" onclick="back()">
+
+    </div>
+</div>
 <div>
+    <br>
+    <br>
     <br>
     <h1 data-source-line="1" id="fullone">
         <a class="markdownIt-Anchor" href="#fullone"></a>
@@ -96,7 +132,7 @@
         <li>Whenever there’s a new buyer, those who are already holding Key will instantly receive EOS dividends which could be withdrawn, until the end of the round of game.</li>
         <li>In each round of game, you could stand to receive 3 substantial EOS rewards：
             <ul>
-                <li>o   Game dividends: During the game, every Key you hold ensures that you will receive a portion of the dividend reward.
+                <li>o	Game dividends: During the game, every Key you hold ensures that you will receive a portion of the dividend reward.
                 </li>
                 <li>Prize Pool sharing: At the end of each round of game, you can also participate in the sharing of the final huge prize pool. </li>
                 <li>Referral reward: If your friend enters your referral code when purchasing Key, you will receive 10% of the purchase amount as referral reward. </li>
@@ -104,11 +140,14 @@
         </li>
         <li>When the timer reaches 0, the last player to purchase more than 1 Key will receive half of the EOS in the prize pool and end the current round of game (When the game ends, the leftover EOS in the prize pool will be shared by the participants of the current round of game and developers).
         </li>
-        <li>Each round of game could last from a few days to a few months, or even a few years, the 24 hours countdown ensures the game will not end very fast in this mode.</li>
-        <li>Each EOS account is only allowed to purchase Key with total worth of not more than 100 EOS.</li>
-        <li>Key’s price increase is slow and gradual, rising slowly with each purchase.
+        <li>Each round of game could last from a few days to a few months, or even a few years, the countdown ensures the game will not end very fast in this mode.</li>
+        <li>Before the total amount received by Smart Contract exceeds 2000 EOS, each EOS account is only allowed to purchase Key with total worth of not more than 100 EOS.</li>
+        <li>Different game modes have different time limits：
+            <ul>
+                <li>  24 - hour mode：Every purchase of Key will add 30 seconds to the current round of game’s timer, capped at 24 hours.</li>
+                <li>  6 - hour mode：Every purchase of Key will add 30 seconds to the current round of game’s timer, capped at 6 hours.</li>
+            </ul>
         </li>
-        <li>Every purchase of Key will add 30 seconds to the current round of game’s timer, capped at 24 hours.</li>
         <li>Every Key will increase the timer’s time, rounded down, meaning 2.5 Key is equivalent to 60 seconds. </li>
         <li>Before the start of each round, there will be a resting period, and Key can’t be bought during this time. If you transfer EOS to the contract during this period, your EOS will not be utilised and will be directly transferred to your income portion and can be withdrawn at any time.
         </li>
@@ -156,97 +195,102 @@
         <li>Game Dividend rule</li>
     </ol>
     <p data-source-line="63">Each Key purchased by players will be distributed based on the team the player chose.</p>
-    <table data-source-line="65">
-        <thead>
-        <tr>
-            <th>Team</th>
-            <th>Prize Pool</th>
-            <th>Key holders</th>
-            <th>Referral Reward</th>
-            <th>Developers Fund</th>
-            <th>System Operation</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Azure Dragon</td>
-            <td>20%</td>
-            <td>66%</td>
-            <td>10%</td>
-            <td>3%</td>
-            <td>1%</td>
-        </tr>
-        <tr>
-            <td>White Tiger</td>
-            <td>40%</td>
-            <td>46%</td>
-            <td>10%</td>
-            <td>3%</td>
-            <td>1%</td>
-        </tr>
-        <tr>
-            <td>Suzaku</td>
-            <td>60%</td>
-            <td>26%</td>
-            <td>10%</td>
-            <td>3%</td>
-            <td>1%</td>
-        </tr>
-        <tr>
-            <td>Genbu</td>
-            <td>80%</td>
-            <td>6%</td>
-            <td>10%</td>
-            <td>3%</td>
-            <td>1%</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="tab_div">
+        <table data-source-line="65">
+            <thead>
+            <tr>
+                <th>Team</th>
+                <th>Prize Pool</th>
+                <th>Key holders</th>
+                <th>Referral Reward</th>
+                <th>Developers Fund</th>
+                <th>System Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Azure Dragon</td>
+                <td>18%</td>
+                <td>61%</td>
+                <td>10%</td>
+                <td>10%</td>
+                <td>1%</td>
+            </tr>
+            <tr>
+                <td>White Tiger</td>
+                <td>37%</td>
+                <td>42%</td>
+                <td>10%</td>
+                <td>10%</td>
+                <td>1%</td>
+            </tr>
+            <tr>
+                <td>Suzaku</td>
+                <td>55%</td>
+                <td>24%</td>
+                <td>10%</td>
+                <td>10%</td>
+                <td>1%</td>
+            </tr>
+            <tr>
+                <td>Genbu</td>
+                <td>73%</td>
+                <td>6%</td>
+                <td>10%</td>
+                <td>10%</td>
+                <td>1%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <ol data-source-line="72" start="2">
         <li>Prize Pool Sharing Rule</li>
     </ol>
     <p data-source-line="74">When the final winner emerges, all the players will share the final prize pool based on the rules of the team the last Key belongs to：</p>
-    <table data-source-line="76">
-        <thead>
-        <tr>
-            <th>Team</th>
-            <th>Final Winner</th>
-            <th>Key holder</th>
-            <th>Next round Prize Pool</th>
-            <th>Developers Reward</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Azure Dragon</td>
-            <td>48%</td>
-            <td>40%</td>
-            <td>10%</td>
-            <td>2%</td>
-        </tr>
-        <tr>
-            <td>White Tiger</td>
-            <td>48%</td>
-            <td>30%</td>
-            <td>20%</td>
-            <td>2%</td>
-        </tr>
-        <tr>
-            <td>Suzaku</td>
-            <td>48%</td>
-            <td>20%</td>
-            <td>30%</td>
-            <td>2%</td>
-        </tr>
-        <tr>
-            <td>Genbu</td>
-            <td>48%</td>
-            <td>10%</td>
-            <td>40%</td>
-            <td>2%</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="tab_div">
+        <table data-source-line="76">
+            <thead>
+            <tr>
+                <th>Team</th>
+                <th>Final Winner</th>
+                <th>Key holder</th>
+                <th>Next round Prize Pool</th>
+                <th>Developers Reward</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Azure Dragon</td>
+                <td>48%</td>
+                <td>40%</td>
+                <td>10%</td>
+                <td>2%</td>
+            </tr>
+            <tr>
+                <td>White Tiger</td>
+                <td>48%</td>
+                <td>30%</td>
+                <td>20%</td>
+                <td>2%</td>
+            </tr>
+            <tr>
+                <td>Suzaku</td>
+                <td>48%</td>
+                <td>20%</td>
+                <td>30%</td>
+                <td>2%</td>
+            </tr>
+            <tr>
+                <td>Genbu</td>
+                <td>48%</td>
+                <td>10%</td>
+                <td>40%</td>
+                <td>2%</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
     <h2 data-source-line="83" ><a class="markdownIt-Anchor"></a>Referral Rewards</h2>
     <ul data-source-line="85">
         <li>On the Referral page, you can copy your referral code and share with your friends.</li>
@@ -254,8 +298,13 @@
         <li>You will receive 10% of your friend’s Key purchase amount as referral reward if he enters your referral code during the purchase.</li>
         <li>In FULL.ONE, you will continue to receive referral benefits as your friend continue to buy Key over time, until he switches to purchase using someone else’s link.
         </li>
-        <li>If a player did not enter referral code when purchasing Key, this amount will be distributed among players holding Key as game bonus.</li>
+        <li>If the player buys the Key without using any promotional code, the invite reward portion is awarded to the developer.</li>
     </ul>
 </div>
+<script>
+  function back(){
+    window.history.back()
+  }
+</script>
 </body>
 </html>

@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div slot="footer" class="confirm">
-                <div class="confirm_btn" @click="confirm">确认</div>
+                <div class="confirm_btn" @click="confirm">{{$t('BTN.CONFIRM')}}</div>
             </div>
         </Modal>
     </div>
@@ -52,7 +52,6 @@
         this.$emit('close')
       },
       select(index){
-        console.log(index)
         this.selectIndex = index
       }
     }
@@ -129,7 +128,7 @@
     }
 
     .confirm_btn {
-        background: #661885;
+        background: #2C34AC;
         border-radius: 0.06rem;
         height: 0.5rem;
         line-height: 0.5rem;

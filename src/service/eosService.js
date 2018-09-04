@@ -1,12 +1,13 @@
 import Eos from 'eosjs'
-import Long from 'long'
 import config from '../config'
 let baseConf = config.EOSCONF
+
 let eosService = function () {
   let config = baseConf
   this.eos = Eos(config)
   return this
 }
+
 function getOneResult (result) {
   if (result && result.rows) {
     return result.rows[0]
@@ -15,11 +16,11 @@ function getOneResult (result) {
   }
 }
 
-eosService.prototype.getAccountInfo = async function (account) {
+eosService.prototype.getAccountInfo = async function (contract,account) {
   let result = await this.eos.getTableRows({
     'json': true,
-    'code': baseConf.code,
-    'scope': baseConf.scope,
+    'code': contract,
+    'scope': contract,
     'table': 'playerround',
     'lower_bound': account,
     'limit': 1
@@ -27,25 +28,41 @@ eosService.prototype.getAccountInfo = async function (account) {
   return result
 }
 
-eosService.prototype.getRoundInfo = async function (lower_bound) {
+eosService.prototype.getRoundInfo = async function (contract,lower_bound) {
   let result = await this.eos.getTableRows({
     'json': true,
-    'code': baseConf.code,
-    'scope': baseConf.scope,
+    'code': contract,
+    'scope': contract,
     'table': 'round',
     'lower_bound': lower_bound,
     'limit': 1
   })
   return getOneResult(result)
 }
-eosService.prototype.getGobalInfo = async function () {
+eosService.prototype.getGobalInfo = async function (contract) {
   let result = await this.eos.getTableRows({
     'json': true,
-    'code': baseConf.code,
-    'scope': baseConf.scope,
+    'code': contract,
+    'scope': contract,
     'table': 'global'
   })
   return getOneResult(result)
+}
+
+eosService.prototype.getCurrnRoundInfo= async function(contract){
+  try {
+    let gobal = await this.getGobalInfo(contract)
+    if (gobal) {
+      let data = await this.getRoundInfo(contract,gobal.current_round)
+      if (data) {
+        return data
+      }
+    } else {
+      return null
+    }
+  } catch (err) {
+    throw err
+  }
 }
 
 eosService.prototype.getActions = async function (account_name, pageParam) {
@@ -59,7 +76,7 @@ eosService.prototype.getActions = async function (account_name, pageParam) {
   return result
 }
 
-eosService.prototype.wallterBuy = async function (account, tokens, team_id, aff) {
+eosService.prototype.wallterBuy = async function (contract,account, tokens, team_id, aff) {
   return new Promise((resolve, reject) => {
     let affStr = ""
     if (aff) {
@@ -67,24 +84,24 @@ eosService.prototype.wallterBuy = async function (account, tokens, team_id, aff)
     }
     let memo = `${affStr}${team_id}`
     let param = {
-      to: baseConf.code,
+      to: contract,
       tokenName: 'EOS',
       tokenContract: 'eosio.token',
       tokenPrecision: 4,
       amount: tokens,
       memo: memo
     }
+
     //todo
-    //transfer to account eosiofullone
   })
 }
 
-eosService.prototype.buyxtoken = async function (account, team_id, tokens, aff) {
+eosService.prototype.buyxtoken = async function (contract,account, team_id, tokens, aff) {
   return new Promise((resolve, reject) => {
     let param = {
       actions: [
         {
-          account: baseConf.scope,
+          account: contract,
           name: 'buyxtoken',
           authorization: [{
             actor: account,
@@ -99,23 +116,23 @@ eosService.prototype.buyxtoken = async function (account, team_id, tokens, aff) 
         }
       ]
     }
-    //todo 
-    //push transactions to account eosiofullone
+    //todo
   })
 }
 
-eosService.prototype.withdraw = async function (account) {
+eosService.prototype.withdraw = async function (contract,account) {
   return new Promise((resolve, reject) => {
     if (!account) {
       return reject("account can't be null")
     }
     let transParam = {
       from: account
+
     }
     let param = {
       actions: [
         {
-          account: baseConf.scope,
+          account: contract,
           name: 'withdraw',
           authorization: [{
             actor: account,
@@ -127,8 +144,34 @@ eosService.prototype.withdraw = async function (account) {
         }
       ]
     }
-    //todo 
-    //push transactions to account eosiofullone
+    //todo
+  })
+}
+
+eosService.prototype.withdraws = async function (contracts,account) {
+  return new Promise((resolve, reject) => {
+    if (!account) {
+      return reject("account can't be null")
+    }
+    let actions = []
+    contracts.forEach(function(contract){
+      let action ={
+        account: contract,
+        name: 'withdraw',
+        authorization: [{
+          actor: account,
+          permission: 'active'
+        }],
+        data: {
+          from: account
+        }
+      }
+      actions.push(action)
+    })
+    let param = {
+      actions
+    }
+    //todo
   })
 }
 

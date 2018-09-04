@@ -25,7 +25,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, dl, dd, fieldset, textarea, pre, 
     list-style: none;
 }
 body {
-    background: #2C1063;
+    background: #0a0e1d;
     font-size: 0.16rem;
     max-width: 500px;
     margin: 0 auto;
@@ -47,7 +47,7 @@ input, textarea {
 .toast {
     width: 2.1rem;
     position: fixed;
-    top: 0.5rem;
+    top: 1.8rem;
     left: 0.825rem;
 }
 

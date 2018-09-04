@@ -11,31 +11,40 @@
   import EOS from 'eosjs'
   export default{
     data: () => {
-      return {}
+      return {
+        loaded: false,
+        sysLang:''
+      }
     },
-    computed:{
+    computed: {
       ...mapState({
-          'lang': 'lang',
+        'lang': 'lang',
       })
     },
     mounted(){
-      let lang = this.lang || 'zh'
+      let lang = this.lang || 'en'
       this.$i18n.locale = lang
     },
     components: {},
     async created(){
       this.$store.dispatch('getEosPrice')
-      setTimeout(() => {
-        this.$store.dispatch('getAccount').then(() => {
-          this.$store.dispatch('getCurrnRoundInfo')
-          this.$store.dispatch('getAccountInfo')
+      setTimeout(()=>{
+        this.$store.dispatch('getAppInfo').then(() => {
+          this.loaded = true
         })
-      }, 500)
-      setInterval(() => {
-        this.$store.dispatch('getCurrnRoundInfo')
-        this.$store.dispatch('getAccountInfo')
-      }, 1000)
-
+      },500)
+    },
+    methods:{
+      changeLang(){
+        let lang = this.lang
+        if(lang == 'zh'){
+          lang = 'en'
+        }else{
+          lang = 'zh'
+        }
+        this.$store.dispatch('setLang',{lang})
+        this.$i18n.locale = lang
+      }
     }
   }
 </script>
@@ -50,6 +59,22 @@
     #app::-webkit-scrollbar {
         width: 0px;
         -webkit-overflow-scrolling: touch;
+    }
+
+    .lang {
+        width: 0.63rem;
+        height: 0.32rem;
+        border: 0.01rem solid #FFFFFF;
+        border-radius: 1rem;
+        font-family: PingFangSC-Medium;
+        font-size: 0.14rem;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        text-align: center;
+        line-height: 0.32rem;
+        position: absolute;
+        right: 0.1rem;
+        top:0.65rem
     }
 
 </style>

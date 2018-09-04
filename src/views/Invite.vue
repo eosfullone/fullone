@@ -1,21 +1,21 @@
 <template>
     <div class="invite">
         <div class="header">
-            <div class="back">
+            <div class="back" :class="{ios:isIOS}">
                 <div class="back_btn" @click="back">
-                    <img src="../assets/imgs/back.png">
+                    <img src="../../public/static/imgs/back.png">
                 </div>
             </div>
         </div>
         <div class="invite_main" :class="{en:lang=='en'}">
-           <!--  <div class="invite_img">
+            <div class="invite_img">
                 <img :src="getImgUrl()">
-            </div> -->
+            </div>
             <div class="invite_tip">{{$t('TIP.INVITE_TIP')}}</div>
             <div class="code_title">{{$t('TIP.MY_INVITE_CODE')}}：</div>
             <div class="code_val" id="copyBtn" :data-clipboard-text="accountName" @click="copy">
                 <span id="content">{{accountName}}</span>
-                <img src="../assets/imgs/copy.png">
+                <img src="../../public/static/imgs/copy.png">
             </div>
             <div class="share_btns">
                 <div class="share_btn" @click="share">{{$t('BTN.SHARE')}} </div>
@@ -41,7 +41,8 @@
       ...mapState({
         'accountName': 'accountName',
         'inApp':'inApp',
-        'lang':'lang'
+        'lang':'lang',
+        'isIOS':'isIOS'
       })
     },
     components: {},
@@ -58,14 +59,13 @@
         document.getElementById("toast").setAttribute("style", "")
       },
       share(){
-        //todo call share api
+        //todo
       },
       back(){
         this.$router.go(-1)
       },
       getImgUrl(){
-        //Generate share pic
-        return ``
+        //todo
       }, copy(){
         new ClipboardJS('#copyBtn')
         this.toast(this.$t('TOAST.COPYED'))
@@ -75,7 +75,8 @@
 </script>
 <style scoped>
     .invite {
-        background: #2C1063;
+        background: #0a0e1d;
+        background-image: linear-gradient(#040000, #1a3269);
         width: 100%;
         height: 100%;
     }
@@ -87,16 +88,13 @@
         color: #FFFFFF;
         letter-spacing: 0;
     }
+
     .invite_main {
-        margin-left: 0.2rem;
-        margin-top: 1.4rem;
-        margin-bottom: 0.4rem;
+        margin:1.4rem auto 0.4rem auto;
         padding: 0.2rem;
         width: 2.95rem;
         border-radius: 0.12rem;
-        background: url("../assets/imgs/invite_bg.png");
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
+        border: solid 0.02rem #3a4bdd;
     }
 
     .invite_main .code_title {
@@ -141,13 +139,12 @@
         width: 1.94rem;
         height: 2.63rem;
         border-radius: 0.06rem;
-        border: solid 0.02rem #4498fa;
+        border: solid 0.02rem #3a4bdd;
         overflow: hidden;
     }
 
     .invite_main .invite_img img {
         width: 1.94rem;
-
     }
 
     .invite_main .gradient_div {
@@ -185,9 +182,9 @@
         text-align: center;
         font-family: PingFangSC-Medium;
         font-size: 0.18rem;
-        background-image: linear-gradient(90deg, #32F8FF 3%, #FC00FF 99%);
+        background: #3a4bdd;
         border-radius: 0.06rem;
-        color: #250061;
+        color: #FFFFFF;
         letter-spacing: 0;
         text-align: center;
     }

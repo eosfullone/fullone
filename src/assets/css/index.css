@@ -1,5 +1,5 @@
 .header {
-    padding: 1rem 0.2rem 0 0.1rem;
+    padding: 1.1rem 0.1rem 0 0.1rem;
     display: flex;
     flex-wrap: wrap;
     z-index: 999;
@@ -8,13 +8,17 @@
 .back {
     top: 0.3rem;
     left: 0.1rem;
-    width: 100%;
+    width: 0.5rem;
     height: 0.35rem;
     font-size: 0.2rem;
     line-height: 0.3rem;
     color: #FFFFFF;
     position: fixed;
 
+}
+
+.back.ios {
+    top: 0.7rem;
 }
 
 .back .back_btn {
@@ -26,9 +30,9 @@
 }
 
 .back .back_btn img {
-    padding-top: 0.05rem;
-    height: 0.25rem;
-    width: 0.25rem;
+    padding-top: 0.07rem;
+    height: 0.2rem;
+    width: 0.15rem;
 }
 
 .header .help {
@@ -36,20 +40,71 @@
 }
 
 .header .header_btn {
+
+    font-family: PingFangSC-Medium;
+    font-size: 0.16rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.header_btn.left {
+    width: 0.9rem;
+    height: 0.39rem;
+    line-height: 0.3rem;
+    background: url("../../../public/static/imgs/rule_btn.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.header_btn.right {
+    width: 0.9rem;
+    height: 0.39rem;
+    line-height: 0.3rem;
+    background: url("../../../public/static/imgs/invite_btn.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.gameModel0 .header_btn.left {
     width: 0.88rem;
     height: 0.32rem;
     line-height: 0.32rem;
     background: #FFC601;
+    color: #2C34AC;
     border-radius: 1rem;
-    font-family: PingFangSC-Medium;
-    font-size: 0.12rem;
-    color: #2C1063;
-    letter-spacing: 0;
-    text-align: center;
-
 }
 
+.gameModel0 .header_btn.right {
+    width: 0.88rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    background: #FFC601;
+    color: #2C34AC;
+    border-radius: 1rem;
+}
 
+.gameModel1 .header_btn.left {
+    width: 0.88rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    background: #683a40;
+    color: #FFFFFF;
+    border-radius: 1rem;
+}
+
+.gameModel1 .header_btn.right {
+    width: 0.88rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
+    background: #683a40;
+    color: #FFFFFF;
+    border-radius: 1rem;
+}
+
+.header .header_btn.en {
+    font-size: 0.12rem;
+}
 
 .header .help .help_bg {
     background-color: #000000;
@@ -86,7 +141,13 @@
 
 .index {
     width: 100%;
-    background: url("../imgs/bg.png");
+    background: #2835a9 url("../../../public/static/imgs/main_bg-1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.gameModel1.index {
+    background: url("../../../public/static/imgs/index_bg_1.png");
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -95,7 +156,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 2.3rem;
+    margin-top: 0.3rem;
 }
 
 .title_bg img {
@@ -104,14 +165,23 @@
     z-index: 0;
 }
 
+.gameModel1 .title_bg img {
+    width: 3.55rem;
+    margin-left: 0.1rem;
+    opacity: 0;
+}
+
 .pond {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.pond .pond_icon {
+    margin-left: -0.2rem;
+}
+
 .pond .pond_icon img {
-    padding-left: 0.1rem;
     margin-top: 0.05rem;
     width: 0.53rem;
     height: 0.63rem;
@@ -127,6 +197,10 @@
     text-shadow: 0 0 0.15rem #C0A0FF;
 }
 
+.gameModel1 .pond .pond_sum {
+    text-shadow: 0 0 0.15rem #FFC0C6;
+}
+
 .top_line {
     width: 2.75rem;
     margin: 0 auto;
@@ -139,23 +213,37 @@
 .top_buy_btn {
     width: 2.95rem;
     height: 0.9rem;
-    background: url("../imgs/buy_btn.png");
+    background: url("../../../public/static/imgs/buy_btn.png");
     background-size: 100%;
     background-repeat: no-repeat;
     margin: 0 auto;
     margin-top: 0.08rem;
 }
+
+
+.gameModel1 .top_buy_btn {
+    background: url("../../../public/static/imgs/buy_btn_1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
 
 .waiting_btn {
     width: 2.95rem;
     height: 0.9rem;
-    background: url("../imgs/waiting_btn.png");
+    background: url("../../../public/static/imgs/waiting_btn.png");
     background-size: 100%;
     background-repeat: no-repeat;
     margin: 0 auto;
     margin-top: 0.08rem;
 }
 
+.gameModel1 .waiting_btn {
+    background: url("../../../public/static/imgs/waiting_btn_1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
 
 .time_out {
     display: flex;
@@ -200,14 +288,20 @@
     display: flex;
     flex-direction: column;
     /*background-color: #FFFFFF;*/
-    background: url("../imgs/my_info_bg.png");
+    background: url("../../../public/static/imgs/my_info_bg.png");
     background-size: 100% 100%;
     width: 3.27rem;
     height: 2.56rem;
     padding: 0.2rem 0 0.2rem 0.2rem;
-    margin-right: 0.27rem;
+    /*margin-right: 0.27rem;*/
     border-radius: 0.05rem;
-    margin-top: 0.1rem;
+    margin: 0.1rem auto 0 auto;
+}
+
+.gameModel1 .main .my_info {
+    background: url("../../../public/static/imgs/my_info_bg_1.png");
+    background-size: 100% 100%;
+    width: 3.17rem;
 }
 
 .main .info_item {
@@ -222,7 +316,7 @@
 
 }
 
-.main .info_item .pot {
+.main .info_item .en {
     font-size: 0.14rem;
     line-height: 0.27rem;
 }
@@ -268,7 +362,7 @@
     width: 2.32rem;
     height: 0.48rem;
     line-height: 0.48rem;
-    background: url("../imgs/btn_bg.png");
+    background: url("../../../public/static/imgs/btn_bg.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     font-family: PingFangSC-Medium;
@@ -277,6 +371,12 @@
     letter-spacing: 0;
     text-align: center;
     margin: 0.05rem auto 0 0.35rem;
+}
+
+.gameModel1 .main .withdraw_btn {
+    background: url("../../../public/static/imgs/withdraw_btn_bg_1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .main .withdraw_btn div {
@@ -288,19 +388,35 @@
     border-radius: 0.06rem;
 }
 
+.gameModel1 .main .withdraw_btn div {
+    background: none;
+}
+
 .tabs {
     width: 3.35rem;
     height: 3.34rem;
-    background: url("../imgs/market_bg.png");
+    background: url("../../../public/static/imgs/market_bg.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    margin-top: 0.36rem;
+    margin: 0.36rem auto 0 auto;
 }
 
 .tabs.change {
     width: 3.35rem;
     height: 3.77rem;
-    background: url("../imgs/team_info.png");
+    background: url("../../../public/static/imgs/team_info.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.gameModel1 .tabs {
+    background: url("../../../public/static/imgs/market_bg_1.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.gameModel1 .tabs.change {
+    background: url("../../../public/static/imgs/team_info_1.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -320,6 +436,11 @@
     font-size: 0.16rem;
     color: #FFFFFF;
     letter-spacing: 0;
+}
+
+.gameModel1 .nav_btn {
+    height: 0.55rem;
+    line-height: 0.55rem;
 }
 
 .nav_btn.active {
@@ -390,11 +511,14 @@
     display: flex;
     align-items: center;
     font-family: PingFangSC-Regular;
-    font-size: 0.12rem;
+    font-size: 0.16rem;
     color: #FFFFFF;
     letter-spacing: 0;
 }
 
+.team_info .team_item .item_left .en {
+    font-size: 0.12rem;
+}
 
 .team_info .team_item .team_logo img {
     width: 0.48rem;
@@ -453,7 +577,7 @@
 .install_btn {
     border-radius: 0.06rem;
     margin: 0 auto;
-    background: #661885;
+    background: #4252ea;
     width: 1.2rem;
     height: 0.4rem;
     line-height: 0.4rem;
@@ -467,7 +591,7 @@
     width: 3.35rem;
     height: 0.4rem;
     /*line-height: 0.4rem;*/
-    background: rgba(0, 0, 0, 0.29);
+    background: #1E258B;
     border-radius: 0.06rem;
     font-family: PingFangSC-Regular;
     font-size: 0.12rem;
@@ -478,10 +602,56 @@
     align-items: center;
 }
 
+.gameModel1 .broadcast {
+    background-color: #683a40;
+    border: #4e282d solid 0.02rem;
+    color: #FFFFFF;
+}
+
 .broadcast .broadcast_icon img {
     width: 0.15rem;
     height: 0.12rem;
     margin-left: 0.12rem;
     margin-right: 0.1rem;
     margin-top: 0.08rem;
+}
+
+.gameModel1 .broadcast_icon img {
+    margin-top: 0.06rem;
+}
+
+.with_draw_info {
+    padding-top: 0.6rem;
+}
+
+.with_draw_item {
+    padding-bottom: 0.3rem;
+    padding: 0 0.2rem 0.3rem 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: PingFangSC-Regular;
+    color: #FFFFFF;
+}
+
+.with_draw_item .item_title {
+    font-size: 0.16rem;
+
+}
+
+.with_draw_item .item_val {
+    font-size: 0.2rem;
+}
+
+.confirm_btn {
+    width: 3.35rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    border-radius: 0.06rem;
+    font-family: PingFangSC-Medium;
+    font-size: 0.18rem;
+    color: #2C34AC;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0 auto 0.6rem auto;
+    background-image: linear-gradient(90deg, #32F8FF 3%, #FC00FF 99%);
 }

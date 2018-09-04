@@ -1,13 +1,13 @@
 <template>
-    <div class="earning">
-        <div class="back">
+    <div class="earning" :class="gameClass">
+        <div class="back" :class="{ios:isIOS}">
             <div class="back_btn" @click="back">
-                <img src="../assets/imgs/back.png">
+                <img src="../../public/static/imgs/back.png">
             </div>
         </div>
         <div class="header">
             <div>&nbsp;</div>
-            <div class="header_btn" :class="{en:lang=='en'}" @click="toInvite">{{$t('BTN.INVITE')}}</div>
+            <div class="header_btn right" :class="{en:lang=='en'}" @click="toInvite">{{$t('BTN.INVITE')}}</div>
         </div>
         <div class="earning_title">
             {{$t('TIP.MY_PROFITS')}}
@@ -83,6 +83,7 @@
       }
     },
     mounted(){
+//      this.$store.dispatch('getMyActions')
     },
     computed: {
       ...mapState({
@@ -92,8 +93,15 @@
         'accountName': 'accountName',
         'rate': 'rate',
         'currency': 'currency',
-        'lang': 'lang'
+        'lang': 'lang',
+        'isIOS':'isIOS',
+        'styleModel':'styleModel'
       }),
+      gameClass(){
+        let obj ={}
+        obj[`gameModel${this.styleModel}`] = true
+        return obj
+      },
       earnAff(){
         let val = 0
         if (this.accountInfo && this.accountInfo.earn_aff) {
@@ -157,7 +165,7 @@
         this.$notify({
           group: 'toast',
           text: text,
-          duration: 1000
+          duration: 5000
         })
         document.getElementById("toast").setAttribute("style", "")
       },
@@ -180,6 +188,8 @@
         } catch (err) {
           this.toast(result.data.message)
         }
+
+//        this.showWithDraw = false
       },
       withdraw(){
         if (!this.accountInfo || !this.accountInfo.myEarn) {
@@ -199,7 +209,7 @@
         return result
       },
       back(){
-        this.$router.push("/")
+        this.$router.push('index')
       },
       toInvite(){
         this.$router.push('invite')
@@ -209,10 +219,13 @@
 </script>
 <style scoped>
     .earning {
-        background: #2C1063;
+        background: #2c34ac;
         height: 100%;
     }
-
+    .gameModel1.earning {
+        background: url("../../public/static/imgs/earning_bg_1.png");
+        background-size: 100%;
+    }
     .earning_title {
         padding-left: 0.2rem;
         font-family: PingFangSC-Medium;
@@ -220,13 +233,20 @@
         color: #00FFF6;
         letter-spacing: 0;
     }
-
+    .gameModel1 .earning_title{
+        color:#ffc659;
+    }
     .earning_main {
         margin-left: 0.1rem;
+        /*margin-top: 0.2rem;*/
         width: 2.95rem;
         height: 1.1rem;
         padding: 0.2rem;
         padding-bottom: 0;
+        /*border-radius: 0.12rem;*/
+        /*background: url("../../public/static/imgs/withdraw_info_bg.png");*/
+        /*background-size: 100% 100%;*/
+        /*background-repeat: no-repeat;*/
     }
 
     .earning_main .earning_val {
@@ -247,7 +267,14 @@
         width: 2.07rem;
         height: 0.44rem;
         margin: 0.2rem auto 0.2rem auto;
-        background: url("../assets/imgs/btn_bg.png");
+        background: url("../../public/static/imgs/btn_bg.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .gameModel1 .with_draw_btn_bg{
+        width: 2.4rem;
+        height: 0.6rem;
+        background: url("../../public/static/imgs/withdraw_btn_bg_1.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
@@ -264,21 +291,26 @@
         letter-spacing: 0;
         text-align: center;
     }
-
+    .gameModel1 .with_draw_btn{
+        line-height: 0.6rem;
+        background: none;
+    }
     .earning_detail {
-        margin-top: 0.5rem;
-        margin-bottom: 0.8rem;
-        margin-left: 0.2rem;
+        margin: 0.5rem auto 0.8rem auto;
         width: 2.95rem;
         height: 2.04rem;
         padding: 0.12rem 0.2rem 0.2rem 0.2rem;
+        /*background: #FFFFFF;*/
         border-radius: 0.12rem;
         color: #FFFFFF;
-        background: url("../assets/imgs/earning_bg.png");
+        background: url("../../public/static/imgs/earning_bg.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
-
+    .gameModel1 .earning_detail{
+        background: none;
+        border: #532d32 solid 0.02rem;
+    }
     .earning_detail .info_item {
         display: flex;
         justify-content: space-between;
@@ -332,40 +364,5 @@
         letter-spacing: 0;
     }
 
-    .with_draw_info {
-        padding-top: 0.6rem;
-    }
 
-    .with_draw_item {
-        padding-bottom: 0.3rem;
-        padding: 0 0.2rem 0.3rem 0.2rem;
-        display: flex;
-        justify-content: space-between;
-        font-family: PingFangSC-Regular;
-        color: #FFFFFF;
-    }
-
-    .with_draw_item .item_title {
-        font-size: 0.16rem;
-
-    }
-
-    .with_draw_item .item_val {
-        font-size: 0.2rem;
-    }
-
-    .confirm_btn {
-        width: 3.35rem;
-        height: 0.5rem;
-        line-height: 0.5rem;
-        border-radius: 0.06rem;
-        font-family: PingFangSC-Medium;
-        font-size: 0.18rem;
-        color: #250061;
-        letter-spacing: 0;
-        text-align: center;
-        margin-left: 0.2rem;
-        margin-bottom: 0.6rem;
-        background-image: linear-gradient(90deg, #32F8FF 3%, #FC00FF 99%);
-    }
 </style>
